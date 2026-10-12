@@ -1,0 +1,18 @@
+# E-GASANG — uploaded requirement documents live in this folder.
+# Never execute anything that lands here.
+Options -Indexes
+
+<IfModule mod_authz_core.c>
+  # Apache 2.4+
+  <FilesMatch "\.(php|phtml|phar|php3|php4|php5|php7|pl|py|jsp|asp|sh|cgi)$">
+    Require all denied
+  </FilesMatch>
+</IfModule>
+
+<IfModule !mod_authz_core.c>
+  # Apache 2.2 fallback
+  <FilesMatch "\.(php|phtml|phar|php3|php4|php5|php7|pl|py|jsp|asp|sh|cgi)$">
+    Order allow,deny
+    Deny from all
+  </FilesMatch>
+</IfModule>
