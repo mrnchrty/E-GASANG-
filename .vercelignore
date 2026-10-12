@@ -1,0 +1,28 @@
+# E-GASANG — files that must NOT be uploaded to Vercel.
+# Vercel serves every non-listed file in the repo as a public static asset,
+# including .php and .sql source. Keeping these out prevents source/credential
+# leaks and keeps the deployment to just the frontend.
+
+# XAMPP backend (PHP source + DB dump) — not used by the static frontend.
+# NOTE: if you follow "Path B" in VERCEL-DEPLOY.md (PHP runtime on Vercel),
+# delete the two api/ lines below so the functions get uploaded.
+api/
+deploy/
+
+# Original project archive + database dump + docs
+egasang-complete-system.zip
+egasang-vercel-ready.zip
+egasang-vercel-ready/
+database.sql
+README.txt
+.htaccess
+VERCEL-DEPLOY.md
+
+# Local-only diagnostics + developer test harness (need PHP/Node, cannot run on Vercel)
+check.php
+tests/
+
+# Local / tooling
+.vercel
+.env
+.env.*

@@ -1,0 +1,14 @@
+# Vercel CLI
+.vercel
+
+# Environment / secrets
+.env
+.env*.local
+
+# Generated drop-in bundle (rebuild with ./deploy/make-bundle.sh)
+egasang-vercel-ready.zip
+egasang-vercel-ready/
+
+# OS / editor
+.DS_Store
+Thumbs.db

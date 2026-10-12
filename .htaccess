@@ -1,0 +1,25 @@
+# E-GASANG — Apache configuration (XAMPP)
+Options -Indexes
+
+# Send unknown /api/... paths to the API index so a typo returns a helpful
+# JSON message instead of Apache's HTML 404 page.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^api/(.*)$ api/index.php [QSA,L]
+</IfModule>
+
+# Security headers — skipped harmlessly if mod_headers is not enabled.
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options nosniff
+  Header always set X-Frame-Options SAMEORIGIN
+  Header always set Referrer-Policy strict-origin-when-cross-origin
+</IfModule>
+
+# Session hardening. Only valid when PHP runs as an Apache module (the XAMPP
+# default); the <IfModule> guard keeps PHP-FPM/CGI setups from erroring out.
+<IfModule php_module>
+  php_value session.cookie_httponly 1
+  php_value session.use_strict_mode 1
+</IfModule>
